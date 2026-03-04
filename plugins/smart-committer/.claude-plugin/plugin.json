@@ -1,0 +1,8 @@
+{
+  "name": "smart-committer",
+  "version": "1.0.0",
+  "description": "Organizes uncommitted changes into logical commit groups",
+  "author": { "name": "sugiura" },
+  "license": "MIT",
+  "keywords": ["git", "commit", "workflow"]
+}

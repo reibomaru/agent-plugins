@@ -1,0 +1,25 @@
+{
+  "name": "agent-plugins",
+  "owner": { "name": "sugiura" },
+  "metadata": {
+    "description": "A collection of Claude Code plugins for smart Git workflows",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "smart-committer",
+      "source": "./plugins/smart-committer",
+      "description": "Organizes uncommitted changes into logical commit groups with a smart-committer agent and /commit skill"
+    },
+    {
+      "name": "pr-creator",
+      "source": "./plugins/pr-creator",
+      "description": "Creates well-structured pull requests with automatic base branch detection, Japanese descriptions, and screenshot support for UI changes"
+    },
+    {
+      "name": "conflict-guard",
+      "source": "./plugins/conflict-guard",
+      "description": "Warns about potential merge conflicts with the base branch before editing files via PreToolUse hook"
+    }
+  ]
+}

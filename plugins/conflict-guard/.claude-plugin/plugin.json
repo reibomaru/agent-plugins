@@ -1,0 +1,8 @@
+{
+  "name": "conflict-guard",
+  "version": "1.0.0",
+  "description": "Warns about potential merge conflicts with the base branch before editing files",
+  "author": { "name": "sugiura" },
+  "license": "MIT",
+  "keywords": ["git", "conflict", "guard", "workflow"]
+}
