@@ -26,15 +26,15 @@ Creates well-structured pull requests with automatic base branch detection and J
 - Captures and uploads screenshots for UI changes
 - Checks for duplicate PRs
 
-### screenshot
+### conflict-guard
 
-pr-creator が UI 変更の Before/After スクリーンショットを撮影するために使うユーティリティスキル。Playwright ベース。
+ファイル編集時にベースブランチとのマージコンフリクトリスクを自動検出する PreToolUse hook プラグイン。
 
 **Features:**
-- Single URL or batch capture with JSON array
-- Configurable viewport size (default: 1440x900)
-- Full-page or viewport-only capture
-- Wait for CSS selectors before capturing
+- `Write`/`Edit` ツール実行前に自動で発火（プロンプト不要）
+- ベースブランチの自動検出（`origin/main`, `origin/master`, `origin/develop`）
+- `CONFLICT_GUARD_BASE_BRANCH` 環境変数でベースブランチを上書き可能
+- 両ブランチが同一ファイルを変更している場合は HIGH リスクとして警告
 
 ## Installation
 
@@ -42,26 +42,21 @@ pr-creator が UI 変更の Before/After スクリーンショットを撮影す
 claude /plugin marketplace add https://github.com/reibomaru/agent-plugins
 claude /plugin install smart-committer@agent-plugins
 claude /plugin install pr-creator@agent-plugins
-claude /plugin install screenshot@agent-plugins
+claude /plugin install conflict-guard@agent-plugins
 ```
 
 ## Usage
 
-変更をコミットしたいとき：
-
-```
-「変更をコミットして」
-```
-
-Claude が smart-committer エージェントを自動起動し、変更を論理的な単位に整理してコミットします。
-
-PR を作成したいとき：
-
-```
-「PRを作って」
-```
-
-Claude が pr-creator エージェントを自動起動し、ベースブランチの検出・日本語 PR 説明の生成・UI 変更時のスクリーンショット撮影まで行います。
+| Plugin | できること | プロンプト例 | 動作 |
+|--------|-----------|-------------|------|
+| **smart-committer** | 未コミットの変更を論理的な単位に分けてコミット | `変更をコミットして` | 変更を分析し、feature/fix/refactor 等に分類して conventional commit を作成 |
+| | | `この作業分をコミットしたい` | 同上 |
+| | | `/commit` | スキル経由で smart-committer を起動 |
+| **pr-creator** | 現在のブランチから PR を作成 | `PRを作って` | ベースブランチ検出 → 確認 → 日本語で PR 説明を生成 → `gh pr create` |
+| | | `この機能の実装が終わったからPRを作って` | 未コミット変更があれば先にコミットしてから PR 作成 |
+| | | `mainブランチに向けてPR出して` | 指定ブランチをターゲットにして PR 作成 |
+| | UI 変更時のスクリーンショット付き PR | `実装完了！PR作成お願い` | UI 変更を検出した場合、Before/After スクリーンショットを撮影して PR に添付 |
+| **conflict-guard** | ファイル編集時にマージコンフリクトのリスクを警告 | *(自動実行 — プロンプト不要)* | `Write`/`Edit` ツール実行前に PreToolUse hook が発火し、ベースブランチとの差分を検査。コンフリクトリスクがあれば警告を表示 |
 
 ## License
 
