@@ -1,0 +1,8 @@
+{
+  "name": "address-pr-comments",
+  "version": "1.0.0",
+  "description": "Classifies PR inline comments and handles them in batch (code fixes, issue creation, replies)",
+  "author": { "name": "sugiura" },
+  "license": "MIT",
+  "keywords": ["git", "pull-request", "review", "github", "workflow"]
+}
