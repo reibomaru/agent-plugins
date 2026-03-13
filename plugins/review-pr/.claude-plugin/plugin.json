@@ -1,0 +1,8 @@
+{
+  "name": "review-pr",
+  "version": "1.0.0",
+  "description": "Comprehensive PR review from 5 perspectives (quality, performance, tests, docs, security) using parallel sub-agents",
+  "author": { "name": "sugiura" },
+  "license": "MIT",
+  "keywords": ["git", "pull-request", "review", "github", "code-review", "workflow"]
+}

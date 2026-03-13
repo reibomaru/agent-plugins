@@ -20,6 +20,16 @@
       "name": "conflict-guard",
       "source": "./plugins/conflict-guard",
       "description": "Warns about potential merge conflicts with the base branch before editing files via PreToolUse hook"
+    },
+    {
+      "name": "address-pr-comments",
+      "source": "./plugins/address-pr-comments",
+      "description": "Classifies PR inline review comments and handles them in batch — code fixes, issue creation, and replies"
+    },
+    {
+      "name": "review-pr",
+      "source": "./plugins/review-pr",
+      "description": "Comprehensive PR review from 5 perspectives (quality, performance, tests, docs, security) using parallel sub-agents"
     }
   ]
 }
